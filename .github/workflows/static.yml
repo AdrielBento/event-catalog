@@ -31,7 +31,7 @@ jobs:
         working-directory: ./docs/my-catalog
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs/my-catalog/dist  # Diretório de saída após o build
 
