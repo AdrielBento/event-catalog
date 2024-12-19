@@ -3,7 +3,7 @@ name: Deploy EventCatalog to GitHub Pages
 on:
   push:
     branches:
-      - main  # Substitua pelo branch que você utiliza
+      - main  # ou o branch que você usa
 
 permissions:
   contents: write
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.12'
+          node-version: '22.x'
 
       - name: Install dependencies
         run: npm install
@@ -30,10 +30,14 @@ jobs:
         run: npm run build
         working-directory: ./docs/my-catalog
 
+      - name: Adjust routing for GitHub Pages
+        run: |
+          echo "Redirect 404s to /index.html" > ./docs/my-catalog/dist/.htaccess
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs/my-catalog/dist  # Diretório de saída após o build
+          path: ./docs/my-catalog/dist
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
