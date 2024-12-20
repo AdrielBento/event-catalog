@@ -27,7 +27,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: ./docs/my-catalog
 
       - name: Build EventCatalog
