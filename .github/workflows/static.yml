@@ -20,10 +20,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: 22
+          cache: npm # or pnpm / yarn
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
         working-directory: ./docs/my-catalog
 
       - name: Build EventCatalog
